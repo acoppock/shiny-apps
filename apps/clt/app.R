@@ -137,10 +137,15 @@ ui <- page_sidebar(
     ),
     actionButton("redraw", "Draw new samples", class = "btn-outline-primary")
   ),
+  # Not a fill card: the plot is drawn at its box's height before the summary
+  # fills the footer, the footer then grows and shrinks a filling box, and the
+  # plot is not redrawn, so its x-axis was hidden below the footer. A fixed
+  # plot in a card sized to its content cannot be squeezed.
   card(
     full_screen = TRUE,
+    fill = FALSE,
     card_header("Distribution of the sample mean"),
-    plotOutput("main_plot", height = "440px"),
+    plotOutput("main_plot", height = "460px", fill = FALSE),
     card_footer(textOutput("summary"))
   ),
   accordion(
