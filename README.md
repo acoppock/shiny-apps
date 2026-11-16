@@ -19,7 +19,7 @@ Interactive tools for teaching experimental design, rebuilt from the 2014 to 201
 
 ## Redirects
 
-Every original URL at `acoppock.shinyapps.io` (listed in `redirects/redirects.csv`) is a stub that forwards to its new home. `MC_app` (multiple comparisons, retired) forwards to the landing page. `redirects/deploy_redirects.R` redeploys them; it needs the `acoppock` rsconnect account.
+Every original URL at `acoppock.shinyapps.io` (listed in `redirects/redirects.csv`) is a stub that forwards to its new home. Multiple comparisons (`MC_app`) was retired and deleted from shinyapps.io on 2026-11-16. `redirects/deploy_redirects.R` redeploys them; it needs the `acoppock` rsconnect account.
 
 ## Build and preview
 
