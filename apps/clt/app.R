@@ -174,8 +174,12 @@ server <- function(input, output, session) {
     pop_df <- tibble::tibble(x = seq(s$xlim[1], s$xlim[2], length.out = 1000), y = s$density(x))
     pop_df <- pop_df[is.finite(pop_df$y), ]
 
+    # A population density that goes to infinity at an edge (the default
+    # Beta(10, 0.5) at 1, chi-square with under 2 df at 0) would set the scale
+    # and flatten everything else, so the spike is scaled by the 90th
+    # percentile of the population curve and clipped at the top of the panel.
     in_view <- gg_df$x >= s$xlim[1] & gg_df$x <= s$xlim[2]
-    y_top <- max(gg_df$y[in_view], pop_df$y, 0)
+    y_top <- max(gg_df$y[in_view], quantile(pop_df$y, 0.9), 0)
     x_span <- diff(s$xlim)
     right_room <- (s$xlim[2] - center) > (center - s$xlim[1])
     side_hjust <- if (right_room) 0 else 1
@@ -214,8 +218,7 @@ server <- function(input, output, session) {
         color = graphite, size = 4.4, fill = parchment, border.colour = NA, label.padding = unit(0.1, "lines")) +
       geom_label(data = pop_label, aes(label = label, hjust = hjust), vjust = -0.4,
         color = teal, size = 4.4, fill = parchment, border.colour = NA, label.padding = unit(0.1, "lines")) +
-      coord_cartesian(xlim = s$xlim) +
-      scale_y_continuous(expand = expansion(mult = c(0, 0.25))) +
+      coord_cartesian(xlim = s$xlim + c(-0.03, 0.03) * x_span, ylim = c(0, 1.25 * y_top), expand = FALSE) +
       labs(x = NULL, y = "Density", subtitle = paste0(s$name, ", samples of size ", s$N)) +
       theme_minimal(base_size = 15) +
       theme(
