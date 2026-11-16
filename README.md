@@ -6,7 +6,6 @@ Interactive tools for teaching experimental design, rebuilt from the 2014 to 201
 |---|---|
 | `apps/power/` | `acoppock.shinyapps.io/power-app-update` |
 | `apps/factorial/` | `acoppock.shinyapps.io/factorial` |
-| `apps/multiple-comparisons/` | `acoppock.shinyapps.io/MC_app` |
 | `apps/clt/` | `acoppock.shinyapps.io/CLT-app` |
 | `apps/random-sampling/` | `acoppock.shinyapps.io/simple_rs` |
 | `apps/spillovers/` | `acoppock.shinyapps.io/spillover-app` |
@@ -20,7 +19,7 @@ Interactive tools for teaching experimental design, rebuilt from the 2014 to 201
 
 ## Redirects
 
-Every original URL at `acoppock.shinyapps.io` (listed in `redirects/redirects.csv`) is a stub that forwards to its new home. `redirects/deploy_redirects.R` redeploys them; it needs the `acoppock` rsconnect account.
+Every original URL at `acoppock.shinyapps.io` (listed in `redirects/redirects.csv`) is a stub that forwards to its new home. `MC_app` (multiple comparisons, retired) forwards to the landing page. `redirects/deploy_redirects.R` redeploys them; it needs the `acoppock` rsconnect account.
 
 ## Build and preview
 
@@ -34,5 +33,7 @@ Pushing to `main` builds and deploys to GitHub Pages through `.github/workflows/
 The original bundles are archived in Dropbox at `shiny_apps/originals/`.
 
 ## Verification
+
+`verification/verify_factorial.R` checks the factorial interaction formula against the 2017 DeclareDesign diagnosands (kept as `verification/factorial_2017_diagnosands.rds`) and a fresh binary-outcome simulation.
 
 `verification/verify_power.R` checks the power formula, read straight from `apps/power/app.R`, against `power.t.test`, `power.prop.test`, and DeclareDesign simulations in all four modes (4,000 sims each). Results are in `verification/power_simulation_results.csv`. Every scenario agrees within 1.6 Monte Carlo standard errors.

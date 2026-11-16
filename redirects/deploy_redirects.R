@@ -28,7 +28,8 @@ stub_app <- function(target, title) {
 
 for (i in seq_len(nrow(redirects))) {
   old <- redirects$old[i]
-  target <- paste0("https://alexandercoppock.com/shiny-apps/", redirects$new[i], "/")
+  # A blank `new` means the app was retired: send visitors to the landing page.
+  target <- paste0("https://alexandercoppock.com/shiny-apps/", if (is.na(redirects$new[i]) || redirects$new[i] == "") "" else paste0(redirects$new[i], "/"))
   dir <- file.path(stub_root, old)
   dir.create(dir, recursive = TRUE, showWarnings = FALSE)
   writeLines(stub_app(target, redirects$title[i]), file.path(dir, "app.R"))
