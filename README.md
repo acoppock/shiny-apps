@@ -5,12 +5,22 @@ Interactive tools for teaching experimental design, rebuilt from the 2014 to 201
 | App | Original |
 |---|---|
 | `apps/power/` | `acoppock.shinyapps.io/power-app-update` |
+| `apps/factorial/` | `acoppock.shinyapps.io/factorial` |
+| `apps/multiple-comparisons/` | `acoppock.shinyapps.io/MC_app` |
+| `apps/clt/` | `acoppock.shinyapps.io/CLT-app` |
+| `apps/random-sampling/` | `acoppock.shinyapps.io/simple_rs` |
+| `apps/spillovers/` | `acoppock.shinyapps.io/spillover-app` |
+| `apps/gotv/` | `acoppock.shinyapps.io/GOTV` |
 
 ## Layout
 
 - `apps/<name>/app.R` plus a `DESCRIPTION` whose `Title` becomes the browser tab title.
 - `theme/brand.scss` is a verbatim copy of the personal site's `acoppock_site_build/brand.scss`; refresh it by copying when the site theme changes. `theme/apps.scss` holds the app-specific overrides layered after it.
 - `build.R` stages each app with the theme files and exports it to `site/<name>/`. `index.html` is the landing page.
+
+## Redirects
+
+Every original URL at `acoppock.shinyapps.io` (listed in `redirects/redirects.csv`) is a stub that forwards to its new home. `redirects/deploy_redirects.R` redeploys them; it needs the `acoppock` rsconnect account.
 
 ## Build and preview
 
