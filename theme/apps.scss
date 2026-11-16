@@ -1,0 +1,47 @@
+/*-- scss:rules --*/
+// Layered after brand.scss. The site caps <main> at a reading measure, which
+// would squeeze a dashboard; apps want the full width.
+
+main {
+  max-width: none;
+}
+
+.bslib-page-title,
+.navbar-brand {
+  font-family: $headings-font-family;
+  font-weight: 600;
+}
+
+.bslib-page-sidebar > .navbar,
+.bslib-page-title {
+  background-color: $body-bg !important;
+  border-bottom: 1px solid $rule-strong;
+  color: $body-color;
+}
+
+.sidebar .form-label,
+.sidebar .control-label {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.card {
+  border-color: $rule-color;
+}
+
+.card-header {
+  font-family: $headings-font-family;
+  font-weight: 600;
+  background-color: transparent;
+  border-bottom: 1px solid $rule-color;
+}
+
+.bslib-value-box .value-box-value {
+  font-family: $headings-font-family;
+}
+
+.irs--shiny .irs-bar,
+.irs--shiny .irs-single {
+  background: $primary;
+  border-color: $primary;
+}

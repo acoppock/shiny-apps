@@ -1,0 +1,24 @@
+# Teaching apps
+
+Interactive tools for teaching experimental design, rebuilt from the 2014 to 2017 shinyapps.io originals. Each app runs entirely in the browser through [shinylive](https://posit-dev.github.io/r-shinylive/), so there is no server to sleep or expire.
+
+| App | Original |
+|---|---|
+| `apps/power/` | `acoppock.shinyapps.io/power-app-update` |
+
+## Layout
+
+- `apps/<name>/app.R` plus a `DESCRIPTION` whose `Title` becomes the browser tab title.
+- `theme/brand.scss` is a verbatim copy of the personal site's `acoppock_site_build/brand.scss`; refresh it by copying when the site theme changes. `theme/apps.scss` holds the app-specific overrides layered after it.
+- `build.R` stages each app with the theme files and exports it to `site/<name>/`. `index.html` is the landing page.
+
+## Build and preview
+
+```r
+source("build.R")
+httpuv::runStaticServer("site")
+```
+
+Pushing to `main` builds and deploys to GitHub Pages through `.github/workflows/deploy.yml`.
+
+The original bundles are archived in Dropbox at `shiny_apps/originals/`.
