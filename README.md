@@ -22,3 +22,7 @@ httpuv::runStaticServer("site")
 Pushing to `main` builds and deploys to GitHub Pages through `.github/workflows/deploy.yml`.
 
 The original bundles are archived in Dropbox at `shiny_apps/originals/`.
+
+## Verification
+
+`verification/verify_power.R` checks the power formula, read straight from `apps/power/app.R`, against `power.t.test`, `power.prop.test`, and DeclareDesign simulations in all four modes (4,000 sims each). Results are in `verification/power_simulation_results.csv`. Every scenario agrees within 1.6 Monte Carlo standard errors.
